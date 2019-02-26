@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Dynamic Table using Javascript</title>
+	</head>
+	<body>
+		<div id="table_space"></div>
+	</body>
+	<script type="text/javascript">
+		var table_data=[
+			{"firstName":"Rahul","lastName":"Nelluru","email":"manikantarahul.n@gmail.com", id:100,"designation":"Software Trainee","DOB":"28-04-1998"},
+			{"firstName":"Aravind","lastName":"Maddula","email":"aravind.m@gmail.com", id:105,"designation":"Software Trainee","DOB":"12-04-1998"},
+			{"firstName":"Hari","lastName":"Sharma","email":"harisharma@gmail.com", id:102,"designation":"Software Trainee","DOB":"01-01-1997"},
+			{"firstName":"Charan","lastName":"Gupta","email":"charan.n@gmail.com", id:104,"designation":"Software Trainee","DOB":"24-06-1998"},
+			{"firstName":"Pavan","lastName":"Krishna","email":"pavankrishna@gmail.com", id:101,"designation":"Software Trainee","DOB":"18-09-1996"}
+		];
+		table_data.sort(function(a, b){
+			return a.id-b.id;
+		});
+		var table_heading=Object.keys(table_data[0]);
+		var space=document.getElementById('table_space');
+		var table=document.createElement('table');
+		table.border=1;
+		var th_row=document.createElement('tr');
+		for(var i=0; i<table_heading.length; i++){
+			var cell=document.createElement('th');
+			var text=document.createTextNode(table_heading[i]);
+			cell.appendChild(text);
+			th_row.appendChild(cell);
+		}
+		table.appendChild(th_row);
+
+		values=table_data.map((element, index)=>{
+			return Object.values(table_data[index])
+		});
+		for(var k=0; k<table_data.length; k++){
+			var row=document.createElement('tr');
+			for(var l=0; l<table_heading.length; l++){
+				var cell=document.createElement('td');
+				var text=document.createTextNode(values[k][l]);
+				cell.appendChild(text);
+				row.appendChild(cell);
+			}
+			table.appendChild(row);
+		}
+		space.appendChild(table);
+	</script>
+</html>
